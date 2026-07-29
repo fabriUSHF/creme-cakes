@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRÈME CAKES | Repostería Artesanal</title>
+
+    <!-- Google Fonts: Playfair Display (Serif elegante para "CRÈME") + Montserrat (Sans-Serif para "CAKES" y etiquetas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul-pastel: #A8C4DA;
+            --crema-dorado: #DFC59B;
+            --blanco: #FFFFFF;
+            --azul-oscuro: #1C3144;
+            --azul-oscuro-suave: #2a4560;
+            --sombra-suave: 0 4px 20px rgba(28, 49, 68, 0.08);
+            --sombra-media: 0 8px 32px rgba(28, 49, 68, 0.12);
+            --transicion: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            --borde-redondo: 16px;
+            --borde-redondo-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco);
+            color: var(--azul-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== UTILIDADES ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ========== ETIQUETAS DE APOYO (Azul Oscuro, Sans-Serif Mayúsculas) ========== */
+        .etiqueta {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--azul-oscuro);
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1.5px solid var(--azul-oscuro);
+            border-radius: 50px;
+            background-color: transparent;
+            transition: var(--transicion);
+        }
+
+        .etiqueta:hover {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+        }
+
+        .etiqueta--dorada {
+            border-color: var(--crema-dorado);
+            color: var(--crema-dorado);
+        }
+
+        .etiqueta--dorada:hover {
+            background-color: var(--crema-dorado);
+            color: var(--azul-oscuro);
+        }
+
+        /* ========== HEADER / NAVEGACIÓN ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(168, 196, 218, 0.3);
+            transition: var(--transicion);
+            padding: 12px 0;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--sombra-suave);
+            padding: 8px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        /* Isotipo pequeño en el header */
+        .header__brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .header__isotipo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--azul-pastel);
+            background-color: var(--blanco);
+            box-shadow: 0 2px 8px rgba(168, 196, 218, 0.3);
+            transition: var(--transicion);
+        }
+
+        .header__brand:hover .header__isotipo {
+            border-color: var(--crema-dorado);
+            box-shadow: 0 4px 16px rgba(223, 197, 155, 0.4);
+            transform: scale(1.05);
+        }
+
+        .header__logo-texto {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .header__creme {
+            font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+            color: var(--azul-pastel);
+            font-style: italic;
+        }
+
+        .header__cakes {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--crema-dorado);
+            margin-top: -2px;
+        }
+
+        /* Navegación */
+        .nav__lista {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav__link {
+            display: inline-block;
+            padding: 10px 18px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--azul-oscuro);
+            border-radius: 50px;
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .nav__link:hover,
+        .nav__link:focus-visible {
+            color: var(--azul-pastel);
+            background-color: rgba(168, 196, 218, 0.1);
+        }
+
+        .nav__link--cta {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco) !important;
+            font-weight: 600;
+            padding: 10px 22px;
+            box-shadow: 0 4px 14px rgba(28, 49, 68, 0.25);
+        }
+
+        .nav__link--cta:hover {
+            background-color: var(--crema-dorado);
+            color: var(--azul-oscuro) !important;
+            box-shadow: 0 6px 20px rgba(223, 197, 155, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Menú hamburguesa móvil */
+        .hamburguesa {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburguesa__linea {
+            width: 26px;
+            height: 2.5px;
+            background-color: var(--azul-oscuro);
+            border-radius: 2px;
+            transition: var(--transicion);
+        }
+
+        .hamburguesa.activa .hamburguesa__linea:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburguesa.activa .hamburguesa__linea:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburguesa.activa .hamburguesa__linea:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(175deg,
+                    var(--blanco) 0%,
+                    rgba(168, 196, 218, 0.08) 40%,
+                    rgba(223, 197, 155, 0.06) 70%,
+                    var(--blanco) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(168, 196, 218, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -80px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(223, 197, 155, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__contenido {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        /* Isotipo grande en hero */
+        .hero__isotipo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 28px;
+            display: block;
+            border: 4px solid var(--azul-pastel);
+            box-shadow: 0 8px 40px rgba(168, 196, 218, 0.3);
+            background-color: var(--blanco);
+            transition: var(--transicion);
+            animation: flotar 4s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .hero__titulo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            margin-bottom: 8px;
+        }
+
+        .hero__creme {
+            font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+            font-weight: 700;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            letter-spacing: 0.03em;
+            color: var(--azul-pastel);
+            font-style: italic;
+            line-height: 1;
+        }
+
+        .hero__cakes {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--crema-dorado);
+            line-height: 1;
+            margin-top: -4px;
+        }
+
+        .hero__subtitulo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.05rem;
+            color: var(--azul-oscuro);
+            letter-spacing: 0.04em;
+            margin-top: 16px;
+            opacity: 0.8;
+        }
+
+        .hero__botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 36px;
+        }
+
+        /* ========== BOTONES ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transicion);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--primario {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            box-shadow: 0 6px 24px rgba(28, 49, 68, 0.3);
+        }
+
+        .btn--primario:hover {
+            background-color: var(--crema-dorado);
+            color: var(--azul-oscuro);
+            box-shadow: 0 8px 30px rgba(223, 197, 155, 0.45);
+            transform: translateY(-3px);
+        }
+
+        .btn--whatsapp {
+            background-color: #25D366;
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn--whatsapp:hover {
+            background-color: #1ebe57;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+            transform: translateY(-3px);
+        }
+
+        .btn__icono {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ========== SECCIÓN MARCA (Isotipo, Logotipo, Imagotipo) ========== */
+        .seccion-marca {
+            padding: 80px 0;
+            background-color: var(--blanco);
+            position: relative;
+        }
+
+        .seccion-marca__titulo {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .seccion-marca__titulo .etiqueta {
+            margin-bottom: 12px;
+        }
+
+        .seccion-marca__heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.2rem;
+            color: var(--azul-oscuro);
+            letter-spacing: 0.02em;
+            margin-top: 8px;
+        }
+
+        .marca-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            align-items: start;
+        }
+
+        .marca-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondo-lg);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1.5px solid rgba(168, 196, 218, 0.35);
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .marca-card:hover {
+            border-color: var(--crema-dorado);
+            box-shadow: var(--sombra-media);
+            transform: translateY(-6px);
+        }
+
+        .marca-card__imagen {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: var(--borde-redondo);
+            background-color: #fafbfc;
+            padding: 12px;
+            border: 2px dashed rgba(168, 196, 218, 0.5);
+            transition: var(--transicion);
+        }
+
+        .marca-card--redondo .marca-card__imagen {
+            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+        }
+
+        .marca-card:hover .marca-card__imagen {
+            border-color: var(--crema-dorado);
+            border-style: solid;
+            background-color: #fffdf8;
+        }
+
+        .marca-card__etiqueta {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--azul-oscuro);
+        }
+
+        .marca-card__nombre {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--azul-oscuro);
+            opacity: 0.7;
+            letter-spacing: 0.04em;
+        }
+
+        /* ========== SECCIÓN PRODUCTOS ========== */
+        .seccion-productos {
+            padding: 80px 0;
+            background-color: rgba(168, 196, 218, 0.05);
+            position: relative;
+        }
+
+        .seccion-productos__header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .producto-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondo-lg);
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            border: 1px solid rgba(168, 196, 218, 0.25);
+        }
+
+        .producto-card:hover {
+            box-shadow: var(--sombra-media);
+            transform: translateY(-4px);
+            border-color: var(--crema-dorado);
+        }
+
+        .producto-card__imagen {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--azul-pastel);
+            font-size: 3rem;
+        }
+
+        .producto-card__cuerpo {
+            padding: 20px 20px 24px;
+            text-align: center;
+        }
+
+        .producto-card__titulo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 6px;
+        }
+
+        .producto-card__descripcion {
+            font-size: 0.9rem;
+            color: #5a6d7e;
+            letter-spacing: 0.02em;
+            line-height: 1.5;
+        }
+
+        /* ========== SECCIÓN CONTACTO ========== */
+        .seccion-contacto {
+            padding: 80px 0;
+            background-color: var(--blanco);
+            text-align: center;
+        }
+
+        .contacto-card {
+            max-width: 550px;
+            margin: 0 auto;
+            background: var(--blanco);
+            border-radius: var(--borde-redondo-lg);
+            padding: 48px 32px;
+            border: 2px solid var(--crema-dorado);
+            box-shadow: var(--sombra-media);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contacto-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(223, 197, 155, 0.12);
+            pointer-events: none;
+        }
+
+        .contacto-card__icono {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .contacto-card__titulo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .contacto-card__texto {
+            color: #5a6d7e;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            position: relative;
+        }
+
+        .contacto-card__telefono {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            color: var(--azul-oscuro);
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .contacto-card__telefono:hover {
+            color: var(--crema-dorado);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+
+        .footer__marca {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .footer__creme {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: 0.03em;
+            color: var(--azul-pastel);
+            font-style: italic;
+        }
+
+        .footer__cakes {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--crema-dorado);
+        }
+
+        .footer__info {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            letter-spacing: 0.04em;
+        }
+
+        .footer__info a {
+            color: var(--crema-dorado);
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+
+        .footer__info a:hover {
+            color: var(--azul-pastel);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hamburguesa {
+                display: flex;
+            }
+
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 340px;
+                height: 100vh;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 100px 32px 40px;
+                box-shadow: -8px 0 30px rgba(28, 49, 68, 0.12);
+                transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 999;
+            }
+
+            .nav.activo {
+                right: 0;
+            }
+
+            .nav__lista {
+                flex-direction: column;
+                gap: 6px;
+                align-items: stretch;
+            }
+
+            .nav__link {
+                text-align: center;
+                padding: 14px 18px;
+                font-size: 0.9rem;
+                border-radius: 12px;
+            }
+
+            .nav__link--cta {
+                margin-top: 8px;
+            }
+
+            .hero__isotipo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .marca-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .marca-card {
+                padding: 20px 14px;
+            }
+
+            .marca-card__imagen {
+                width: 80px;
+                height: 80px;
+            }
+
+            .marca-card--redondo .marca-card__imagen {
+                width: 90px;
+                height: 90px;
+            }
+
+            .contacto-card {
+                padding: 32px 20px;
+            }
+
+            .contacto-card__telefono {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .marca-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .hero__creme {
+                font-size: 2.5rem;
+            }
+
+            .hero__cakes {
+                font-size: 1.1rem;
+                letter-spacing: 0.25em;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.8rem;
+                letter-spacing: 0.04em;
+            }
+
+            .header__isotipo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .header__creme {
+                font-size: 0.95rem;
+            }
+
+            .header__cakes {
+                font-size: 0.7rem;
+                letter-spacing: 0.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="#inicio" class="header__brand" aria-label="CRÈME CAKES - Ir al inicio">
+                <!-- Isotipo redondo en el header -->
+                <img
+                src="icono-redondo.png"
+                alt="Isotipo CRÈME CAKES"
+                class="header__isotipo"
+                onerror="this.style.backgroundColor='#f0f4f8'; this.style.border='2px dashed #A8C4DA';"
+                >
+                <span class="header__logo-texto">
+                    <span class="header__creme">CRÈME</span>
+                    <span class="header__cakes">CAKES</span>
+                </span>
+            </a>
+
+            <!-- Menú hamburguesa (móvil) -->
+            <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+                <span class="hamburguesa__linea"></span>
+                <span class="hamburguesa__linea"></span>
+                <span class="hamburguesa__linea"></span>
+            </button>
+
+            <!-- Navegación -->
+            <nav class="nav" id="nav">
+                <ul class="nav__lista">
+                    <li><a href="#inicio" class="nav__link">Inicio</a></li>
+                    <li><a href="#marca" class="nav__link">Marca</a></li>
+                    <li><a href="#productos" class="nav__link">Productos</a></li>
+                    <li><a href="#contacto" class="nav__link nav__link--cta">Pedir Ahora</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== HERO (INICIO) ==================== -->
+    <section class="hero" id="inicio">
+        <div class="hero__contenido">
+            <!-- Isotipo grande en el hero -->
+            <img
+            src="isotipo.png"
+            alt="Isotipo CRÈME CAKES"
+            class="hero__isotipo"
+            onerror="this.style.backgroundColor='#fafbfc'; this.style.border='3px dashed #A8C4DA'; this.style.width='130px'; this.style.height='130px'; this.style.borderRadius='50%'; this.style.display='block'; this.style.margin='0 auto 28px';"
+            >
+
+            <div class="hero__titulo">
+                <span class="hero__creme">CRÈME</span>
+                <span class="hero__cakes">CAKES</span>
+            </div>
+
+            <p class="hero__subtitulo">Repostería artesanal • Guatemala</p>
+
+            <div class="hero__botones">
+                <a href="#contacto" class="btn btn--primario">
+                    ✦ Hacer Pedido
+                </a>
+                <a href="https://wa.me/50237961059?text=Hola%20CRÈME%20CAKES%2C%20me%20gustar%C3%ADa%20info" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp">
+                    <svg class="btn__icono" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN MARCA ==================== -->
+    <section class="seccion-marca" id="marca">
+        <div class="container">
+            <div class="seccion-marca__titulo">
+                <span class="etiqueta">IDENTIDAD</span>
+                <h2 class="seccion-marca__heading">Elementos de Marca</h2>
+            </div>
+
+            <div class="marca-grid">
+                <!-- Isotipo -->
+                <div class="marca-card marca-card--redondo">
+                    <img
+                    src="isotipo.png"
+                    alt="Isotipo"
+                    class="marca-card__imagen"
+                    onerror="this.style.backgroundColor='#f0f4f8'; this.style.border='2px dashed #A8C4DA'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center';"
+                    >
+                    <span class="etiqueta">ISOTIPO</span>
+                    <span class="marca-card__nombre">Símbolo icónico circular</span>
+                </div>
+
+                <!-- Icono Redondo -->
+                <div class="marca-card marca-card--redondo">
+                    <img
+                    src="icono-redondo.png"
+                    alt="Icono Redondo"
+                    class="marca-card__imagen"
+                    onerror="this.style.backgroundColor='#f0f4f8'; this.style.border='2px dashed #A8C4DA';"
+                    >
+                    <span class="etiqueta">ICONO REDONDO</span>
+                    <span class="marca-card__nombre">Versión simplificada</span>
+                </div>
+
+                <!-- Logotipo -->
+                <div class="marca-card">
+                    <img
+                    src="logotipo.png"
+                    alt="Logotipo"
+                    class="marca-card__imagen"
+                    style="border-radius: 16px;"
+                    onerror="this.style.backgroundColor='#f0f4f8'; this.style.border='2px dashed #A8C4DA';"
+                    >
+                    <span class="etiqueta">LOGOTIPO</span>
+                    <span class="marca-card__nombre">Tipografía completa</span>
+                </div>
+
+                <!-- Imagotipo -->
+                <div class="marca-card">
+                    <img
+                    src="imagotipo.png"
+                    alt="Imagotipo"
+                    class="marca-card__imagen"
+                    style="border-radius: 16px;"
+                    onerror="this.style.backgroundColor='#f0f4f8'; this.style.border='2px dashed #A8C4DA';"
+                    >
+                    <span class="etiqueta">IMAGOTIPO</span>
+                    <span class="marca-card__nombre">Símbolo + Texto</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN PRODUCTOS ==================== -->
+    <section class="seccion-productos" id="productos">
+        <div class="container">
+            <div class="seccion-productos__header">
+                <span class="etiqueta etiqueta--dorada">NUESTRAS DELICIAS</span>
+                <h2 class="seccion-marca__heading" style="margin-top: 8px;">Especialidades</h2>
+            </div>
+
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🎂</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Pasteles Personalizados</h3>
+                        <p class="producto-card__descripcion">Diseños únicos para cumpleaños, bodas y ocasiones especiales. 100% artesanales.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🧁</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Cupcakes Gourmet</h3>
+                        <p class="producto-card__descripcion">Sabores exclusivos con ingredientes premium y decoración delicada.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🍰</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Cheesecakes</h3>
+                        <p class="producto-card__descripcion">Textura cremosa y suave con bases de galleta artesanal. Un clásico irresistible.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🍪</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Galletas Decoradas</h3>
+                        <p class="producto-card__descripcion">Perfectas para regalar, eventos corporativos o mesas de postres.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🥐</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Mini Pastelería</h3>
+                        <p class="producto-card__descripcion">Croissants, tartaletas y bocados dulces para acompañar el café.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-card__imagen">🎁</div>
+                    <div class="producto-card__cuerpo">
+                        <h3 class="producto-card__titulo">Cajas de Regalo</h3>
+                        <p class="producto-card__descripcion">Selecciones especiales para sorprender a quien más quieres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN CONTACTO ==================== -->
+    <section class="seccion-contacto" id="contacto">
+        <div class="container">
+            <span class="etiqueta" style="margin-bottom: 12px;">CONTACTO</span>
+            <h2 class="seccion-marca__heading" style="margin-bottom: 40px;">Hablemos</h2>
+
+            <div class="contacto-card">
+                <div class="contacto-card__icono">📞</div>
+                <h3 class="contacto-card__titulo">¿Listo para pedir?</h3>
+                <p class="contacto-card__texto">
+                    Estamos en Guatemala. Escríbenos por WhatsApp o llámanos directamente.
+                    ¡Tu pedido está a un mensaje de distancia!
+                </p>
+                <a href="tel:+50237961059" class="contacto-card__telefono">
+                    +502 3796 1059
+                </a>
+                <br>
+                <a href="https://wa.me/50237961059?text=Hola%20CRÈME%20CAKES%2C%20me%20gustar%C3%ADa%20info" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp" style="margin-top: 8px;">
+                    <svg class="btn__icono" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                    Enviar mensaje por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__marca">
+                <span class="footer__creme">CRÈME</span>
+                <span class="footer__cakes">CAKES</span>
+            </div>
+            <p class="footer__info">
+                © <span id="anio"></span> CRÈME CAKES · Repostería Artesanal · Guatemala
+                <br>
+                <a href="tel:+50237961059">+502 3796 1059</a> |
+                <a href="https://wa.me/50237961059" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Año dinámico en el footer ---
+            document.getElementById('anio').textContent = new Date().getFullYear();
+
+            // --- Header con sombra al hacer scroll ---
+            const header = document.getElementById('header');
+            const scrollHandler = () => {
+                if (window.scrollY > 30) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', scrollHandler, { passive: true });
+            scrollHandler(); // ejecutar al cargar
+
+            // --- Menú hamburguesa móvil ---
+            const hamburguesa = document.getElementById('hamburguesa');
+            const nav = document.getElementById('nav');
+            const navLinks = nav.querySelectorAll('.nav__link');
+
+            const toggleMenu = (forceClose = false) => {
+                const isActive = nav.classList.contains('activo');
+                if (forceClose || isActive) {
+                    nav.classList.remove('activo');
+                    hamburguesa.classList.remove('activa');
+                    hamburguesa.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                } else {
+                    nav.classList.add('activo');
+                    hamburguesa.classList.add('activa');
+                    hamburguesa.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+
+            hamburguesa.addEventListener('click', () => toggleMenu());
+
+            // Cerrar menú al hacer clic en un enlace
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu(true);
+                });
+            });
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (nav.classList.contains('activo') &&
+                    !nav.contains(e.target) &&
+                    !hamburguesa.contains(e.target)) {
+                    toggleMenu(true);
+                }
+            });
+
+            // Cerrar menú con tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('activo')) {
+                    toggleMenu(true);
+                }
+            });
+
+            // --- Cierre suave al redimensionar a pantalla grande ---
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && nav.classList.contains('activo')) {
+                    toggleMenu(true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
